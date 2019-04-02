@@ -12,10 +12,10 @@ const output = solc.compile(source, 1).contracts;
 
 // If not exists, it will be created
 fs.ensureDirSync(buildPath);
-
-for (let contract in output) {
+// { ':Campaign':  ...
+for (let contractName in output) {
   fs.outputJsonSync(
-    path.resolve(buildPath, `${contract}.json`),
-    output[contract]
+    path.resolve(buildPath, `${contractName.replace(':', '')}.json`),
+    output[contractName]
   );
 }
