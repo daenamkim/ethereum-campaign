@@ -1,5 +1,7 @@
 pragma solidity ^0.4.17;
 
+// Reason that uses CampaignFactory is to get Campaign's address after deployment
+// because there is no way to get it dynamically in the app
 contract CampaignFactory {
     address[] public deployedCampaigns;
 

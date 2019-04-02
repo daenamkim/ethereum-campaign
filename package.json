@@ -5,6 +5,9 @@
   "repository": "git@github.com:daenamkim/ethereum-campaign.git",
   "author": "Daenam Kim <daenam.kim@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "test": "mocha"
+  },
   "dependencies": {
     "fs-extra": "^7.0.1",
     "ganache-cli": "^6.4.1",
