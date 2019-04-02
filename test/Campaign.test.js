@@ -31,12 +31,14 @@ beforeEach(async () => {
   );
 });
 
-describe('test', () => {
-  it('test', () => {
-    console.log(
-      '!!',
-      compiledCampaign.interface,
-      JSON.parse(compiledCampaign.interface)
-    );
+describe('Campaigns', () => {
+  it('deploys a factory and a campaign', () => {
+    assert.ok(factory.options.address);
+    assert.ok(campaign.options.address);
+    // console.log(
+    //   '!!',
+    //   compiledCampaign.interface,
+    //   JSON.parse(compiledCampaign.interface)
+    // );
   });
 });
