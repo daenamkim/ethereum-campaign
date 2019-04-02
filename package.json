@@ -1,0 +1,15 @@
+{
+  "name": "ethereum-campaign",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:daenamkim/ethereum-campaign.git",
+  "author": "Daenam Kim <daenam.kim@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^7.0.1",
+    "ganache-cli": "^6.4.1",
+    "mocha": "^6.0.2",
+    "solc": "^0.5.7",
+    "web3": "1.0.0-beta.35"
+  }
+}
