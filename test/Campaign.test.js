@@ -6,6 +6,7 @@ const web3 = new Web3(ganache.provider());
 const compiledFactory = require('../ethereum/build/CampaignFactory.json');
 const compiledCampaign = require('../ethereum/build/Campaign.json');
 
+// TODO: refactor to separate accounts into manager, approver and vendor
 let accounts;
 let factory;
 let campaignAddress;
@@ -62,5 +63,16 @@ describe('Campaigns', () => {
       // pass
       assert(err);
     }
+  });
+
+  it('allows a manager to make a payment request', async () => {
+    await campaign.methods
+      .createRequest('Buy batteries', '100', accounts[2])
+      .send({
+        from: accounts[0],
+        gas: '1000000'
+      });
+    const request = await campaign.methods.requests(0).call();
+    assert.equal('Buy batteries', request.description);
   });
 });
