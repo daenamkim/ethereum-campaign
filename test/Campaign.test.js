@@ -35,10 +35,10 @@ describe('Campaigns', () => {
   it('deploys a factory and a campaign', () => {
     assert.ok(factory.options.address);
     assert.ok(campaign.options.address);
-    // console.log(
-    //   '!!',
-    //   compiledCampaign.interface,
-    //   JSON.parse(compiledCampaign.interface)
-    // );
+  });
+
+  it('marks caller as the campaign manager', async () => {
+    const manager = await campaign.methods.manager().call();
+    assert.equal(accounts[0], manager);
   });
 });
