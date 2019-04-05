@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import factory from '../ethereum/factory';
 
 class CampaignIndex extends Component {
-  async componentDidMount() {
+  // static is to do something before rendering
+  static async getInitialProps() {
     const campaigns = await factory.methods.getDeployedCampaigns().call();
-    console.log(campaigns);
+
+    return { campaigns };
   }
 
   render() {
-    return <div>Camapigns Index!</div>;
+    return <div>!: {this.props.campaigns[0]}</div>;
   }
 }
 

@@ -9,7 +9,7 @@ if (typeof window !== 'undefined' && typeof window.web3 !== 'undefined') {
   web3 = new Web3(window.web3.currentProvider);
 } else {
   // We are on the server *OR* the user is not running metamask.
-  // TODO: make user select each network
+  // TODO: make user select each network or notice a user should use rinkeby
   const provider = new Web3.providers.HttpProvider(INFURA_API);
   web3 = new Web3(provider);
 }
