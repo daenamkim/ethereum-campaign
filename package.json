@@ -6,7 +6,8 @@
   "author": "Daenam Kim <daenam.kim@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "dev": "next dev"
   },
   "dependencies": {
     "fs-extra": "^7.0.1",

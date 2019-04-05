@@ -42,6 +42,7 @@ contract Campaign {
     }
 
     function contribute() public payable {
+        // TODO: if the same person cointribute multiple times?
         require(msg.value > minimumContribution);
 
         approvers[msg.sender] = true;
