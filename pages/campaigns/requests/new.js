@@ -9,7 +9,9 @@ class RequestNew extends Component {
   state = {
     value: '',
     description: '',
-    recipient: ''
+    recipient: '',
+    errorMessage: '',
+    loading: false
   };
 
   static async getInitialProps(props) {
@@ -18,13 +20,34 @@ class RequestNew extends Component {
     return { address };
   }
 
+  onSubmit = async event => {
+    event.preventDefault();
+
+    const { address } = this.props;
+    const { description, value, recipient } = this.state;
+    const campaign = Campaign(address);
+
+    this.setState({ loading: true, errorMessage: '' });
+
+    try {
+      const accounts = await web3.eth.getAccounts();
+      await campaign.methods
+        .createRequest(description, web3.utils.toWei(value, 'ether'), recipient)
+        .send({ from: accounts[0] });
+    } catch (err) {
+      this.setState({ errorMessage: err });
+    }
+
+    this.setState({ loading: false });
+  };
+
   render() {
-    const { value, description, recipient } = this.state;
+    const { value, description, recipient, loading, errorMessage } = this.state;
 
     return (
       <Layout>
         <h3>Create a Request</h3>
-        <Form>
+        <Form onSubmit={this.onSubmit} error={!!errorMessage}>
           <Form.Field>
             <label>Description</label>
             <Input
@@ -37,6 +60,8 @@ class RequestNew extends Component {
           <Form.Field>
             <label>Value in Ether</label>
             <Input
+              label="ether"
+              labelPosition="right"
               value={value}
               onChange={event => {
                 this.setState({ value: event.target.value });
@@ -46,13 +71,18 @@ class RequestNew extends Component {
           <Form.Field>
             <label>Recipient</label>
             <Input
+              label="0x..."
+              labelPosition="right"
               recipient={recipient}
               onChange={event => {
                 this.setState({ recipient: event.target.value });
               }}
             />
           </Form.Field>
-          <Button primary>Create</Button>
+          <Button primary loading={loading}>
+            Create
+          </Button>
+          <Message error header="Oops!" content={errorMessage} />
         </Form>
       </Layout>
     );
