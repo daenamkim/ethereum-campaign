@@ -23,10 +23,11 @@ class CampaignNew extends Component {
       await factory.methods
         .createCampaign(minimumContribution)
         .send({ from: accounts[0] });
+
       Router.pushRoute('/');
     } catch (err) {
       console.error(err);
-      this.setState({ errorMessage: err });
+      this.setState({ errorMessage: err.message });
     }
 
     this.setState({ loading: false });
@@ -50,7 +51,6 @@ class CampaignNew extends Component {
               }
             />
           </Form.Field>
-          {/* error from From */}
           <Message error header="Oops!" content={errorMessage} />
           <Button loading={loading} primary>
             Create!
