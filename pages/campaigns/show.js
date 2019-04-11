@@ -8,20 +8,12 @@ import ContributeForm from '../../components/ContributeForm';
 class CampaignShow extends Component {
   static async getInitialProps(props) {
     const { address } = props.query;
+    const campaign = Campaign(address);
+    const summary = await campaign.methods.getSummary().call();
 
-    // TODO: MetaMask is not working
-    // const campaign = Campaign(address);
-    // const summary = await campaign.methods.getSummary().call();
-    const summary = {
-      '0': '100',
-      '1': '0',
-      '2': '0',
-      '3': '0',
-      '4': '0x672b39F0D2609a6FeC23358f4b8D8c92104BAF56'
-    };
-    console.log(summary);
     // return of the contract doesn't have keys
     return {
+      address,
       minimumContribution: summary['0'],
       balance: summary['1'],
       requestCount: summary['2'],
@@ -38,8 +30,6 @@ class CampaignShow extends Component {
       approversCount,
       manager
     } = this.props;
-
-    console.log(this.props);
 
     const items = [
       {
@@ -82,13 +72,15 @@ class CampaignShow extends Component {
   }
 
   render() {
+    const { address } = this.props;
+
     return (
       <Layout>
         <h3>Campaign Show</h3>
         <Grid>
           <Grid.Column width={10}>{this.renderCards()}</Grid.Column>
           <Grid.Column width={6}>
-            <ContributeForm />
+            <ContributeForm address={address} />
           </Grid.Column>
         </Grid>
       </Layout>

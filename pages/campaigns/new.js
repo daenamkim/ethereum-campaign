@@ -16,18 +16,17 @@ class CampaignNew extends Component {
     event.preventDefault();
 
     this.setState({ loading: true, errorMessage: '' });
+    const { minimumContribution } = this.state;
 
     try {
       const accounts = await web3.eth.getAccounts();
       await factory.methods
-        .createCampaign(this.state.minimumContribution)
+        .createCampaign(minimumContribution)
         .send({ from: accounts[0] });
       Router.pushRoute('/');
     } catch (err) {
       console.error(err);
       this.setState({ errorMessage: err });
-      // TODO: remove this line later
-      Router.pushRoute('/');
     }
 
     this.setState({ loading: false });

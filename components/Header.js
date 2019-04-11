@@ -8,15 +8,15 @@ export default () => {
       <Link route="/">
         {/* If you want to see a href in the html use a tag  */}
         {/* <a className="item">CrowdCoin</a> */}
-        <Menu.Item>CrowdCoin</Menu.Item>
+        <a className="item">CrowdCoin</a>
       </Link>
 
       <Menu.Menu position="right">
         <Link route="/">
-          <Menu.Item>Campaigns</Menu.Item>
+          <a className="item">Campaigns</a>
         </Link>
         <Link route="/campaigns/new">
-          <Menu.Item>+</Menu.Item>
+          <a className="item">+</a>
         </Link>
       </Menu.Menu>
     </Menu>

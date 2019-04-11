@@ -1,7 +1,7 @@
 import Web3 from 'web3';
 
-const INFURA_API =
-  'https://rinkeby.infura.io/v3/e8b3e20085c348e3989f9cc83c4708ac';
+const EXTERNAL_API = process.env.RINKEBY_API;
+
 let web3;
 
 if (typeof window !== 'undefined' && typeof window.web3 !== 'undefined') {
@@ -10,7 +10,7 @@ if (typeof window !== 'undefined' && typeof window.web3 !== 'undefined') {
 } else {
   // We are on the server *OR* the user is not running metamask.
   // TODO: make user select each network or notice a user should use rinkeby
-  const provider = new Web3.providers.HttpProvider(INFURA_API);
+  const provider = new Web3.providers.HttpProvider(EXTERNAL_API);
   web3 = new Web3(provider);
 }
 
