@@ -3,7 +3,6 @@ const solc = require('solc');
 const fs = require('fs-extra');
 
 const buildPath = path.resolve(__dirname, 'build');
-// TODO: removeSync is different from fs lib?
 fs.removeSync(buildPath);
 
 const campaignPath = path.resolve(__dirname, 'contracts', 'Campaign.sol');

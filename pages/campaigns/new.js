@@ -26,9 +26,9 @@ class CampaignNew extends Component {
     } catch (err) {
       console.error(err);
       this.setState({ errorMessage: err });
+      // TODO: remove this line later
+      Router.pushRoute('/');
     }
-    // TODO: remove this line later
-    Router.pushRoute('/');
 
     this.setState({ loading: false });
   };
@@ -38,7 +38,7 @@ class CampaignNew extends Component {
 
     return (
       <Layout>
-        <h3>New Campaign!</h3>
+        <h3>Create Campaign</h3>
         <Form onSubmit={this.onSubmit} error={!!errorMessage}>
           <Form.Field>
             <label>Minimum Contribution</label>
