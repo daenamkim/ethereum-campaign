@@ -18,6 +18,8 @@ class ContributeForm extends Component {
     const { value } = this.state;
     const campaign = Campaign(address);
 
+    this.setState({ loading: true, errorMessage: '' });
+
     try {
       const accounts = await web3.eth.getAccounts();
       await campaign.methods
@@ -26,14 +28,18 @@ class ContributeForm extends Component {
 
       // Refresh
       Router.replaceRoute(`/campaigns/${address}`);
-    } catch (err) {}
+    } catch (err) {
+      this.setState({ errorMessage: err.message });
+    }
+
+    this.setState({ loading: false, value: '' });
   };
 
   render() {
-    const { value } = this.state;
+    const { value, loading, errorMessage } = this.state;
 
     return (
-      <Form onSubmit={this.onSubmit} error={false}>
+      <Form onSubmit={this.onSubmit} error={!!errorMessage}>
         <Form.Field>
           <label>Amount to Contribute</label>
           <Input
@@ -47,8 +53,10 @@ class ContributeForm extends Component {
             labelPosition="right"
           />
         </Form.Field>
-        {/* <Message error header="Oops!" content={'errorMessage'} /> */}
-        <Button primary>Contribute!</Button>
+        <Message error header="Oops!" content={errorMessage} />
+        <Button primary loading={loading}>
+          Contribute!
+        </Button>
       </Form>
     );
   }
