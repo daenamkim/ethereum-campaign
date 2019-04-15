@@ -97,8 +97,7 @@ contract Campaign {
         );
     }
 
-    // TODO: change name to getRequestCount and redeploy
-    function getRequestCount() public view returns (uint) {
+    function getRequestsCount() public view returns (uint) {
         return requests.length;
     }
 }

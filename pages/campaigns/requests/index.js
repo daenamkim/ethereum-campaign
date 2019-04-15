@@ -9,27 +9,31 @@ class RequestIndex extends Component {
   static async getInitialProps(props) {
     const { address } = props.query;
     const campaign = Campaign(address);
-    const requestCount = await campaign.methods.getRequestCount().call();
+    const requestsCount = await campaign.methods.getRequestsCount().call();
+    const approversCount = await campaign.methods.approversCount().call();
 
     // contract cannot return array
     const requests = await Promise.all(
-      Array(parseInt(requestCount))
+      Array(parseInt(requestsCount))
         .fill()
         .map((_, index) => {
           return campaign.methods.requests(index).call();
         })
     );
 
-    console.log(requests);
-
-    return { address, requests };
+    return { address, requests, requestsCount, approversCount };
   }
 
   renderRows() {
-    const { requests, address } = this.props;
-    console.log(requests);
+    const { requests, address, approversCount } = this.props;
     return requests.map((request, index) => (
-      <RequestRow key={index} request={request} address={address} />
+      <RequestRow
+        key={index}
+        id={index}
+        request={request}
+        address={address}
+        approversCount={approversCount}
+      />
     ));
   }
 

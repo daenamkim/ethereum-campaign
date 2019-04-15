@@ -21,8 +21,6 @@ const deploy = async () => {
   console.log('Contract deployed to', result.options.address);
 };
 deploy();
-// Addresses
-// 0x7B1C43b2C3F735Bbb230836aCe954f7551532D5a
 
 /*
  truffle-hdwallet-provider version 0.0.3
