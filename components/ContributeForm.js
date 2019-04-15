@@ -27,6 +27,7 @@ class ContributeForm extends Component {
         .send({ from: accounts[0], value: web3.utils.toWei(value, 'ether') });
 
       // Refresh
+      // TODO: why does not this look like working?
       Router.replaceRoute(`/campaigns/${address}`);
     } catch (err) {
       this.setState({ errorMessage: err.message });
