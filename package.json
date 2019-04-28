@@ -7,7 +7,13 @@
   "license": "MIT",
   "scripts": {
     "test": "mocha",
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "dev:client": "next",
+    "build": "next build",
+    "start": "next start -p $PORT",
+    "export": "next export",
+    "deploy": "yarn build && yarn export",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "fs-extra": "^7.0.1",
