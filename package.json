@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:daenamkim/ethereum-campaign.git",
-  "author": "Daenam Kim <daenam.kim@gmail.com>",
+  "author": "Daenam Kim",
   "license": "MIT",
   "scripts": {
     "test": "mocha",
     "dev": "node server.js",
     "dev:client": "next",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p $PORT",
     "export": "next export",
     "deploy": "yarn build && yarn export",
     "heroku-postbuild": "npm run build"
