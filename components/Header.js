@@ -6,9 +6,7 @@ export default () => {
   return (
     <Menu style={{ marginTop: '10px' }}>
       <Link route="/">
-        {/* If you want to see a href in the html use a tag  */}
-        {/* <a className="item">CrowdCoin</a> */}
-        <a className="item">CrowdCoin</a>
+        <a className="item">kickether</a>
       </Link>
 
       <Menu.Menu position="right">
