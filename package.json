@@ -8,11 +8,8 @@
   "scripts": {
     "test": "mocha",
     "dev": "node server.js",
-    "dev:client": "next",
     "build": "next build",
-    "start": "next start -p $PORT",
-    "export": "next export",
-    "deploy": "yarn build && yarn export",
+    "start": "NODE_ENV=production node server.js",
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
